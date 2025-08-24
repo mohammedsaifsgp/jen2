@@ -1,9 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Test GitHub') {
+        stage('Checkout') {
             steps {
-                echo 'GitHub integration is working!'
+                git branch: 'main', url: 'https://github.com/your-username/your-repo.git'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t myapp:latest .'
             }
         }
     }
